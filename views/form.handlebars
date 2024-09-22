@@ -1,0 +1,29 @@
+<h1>Email a friend!</h1>
+<form action="/process" method="POST">
+	<label for="ddlLayout">
+		<span class="labelText">LAYOUT</span>
+		<select id="ddlLayout" name="ddlLayout">
+			<option value="red">RED</option>
+			<option value="green">GREEN</option>
+			<option value="blue">BLUE</option>
+		</select>
+	</label>
+
+	<br />
+
+	<label for="txtEmail">
+		<span class="labelText">EMAIL</span>
+		<input id="txtEmail" name="txtEmail" placeholder="john12345@gmail.com" />
+	</label>
+
+	<br />
+
+	<label for="txtMessage">
+		<span class="labelText">MESSAGE</span>
+		<textarea id="txtMessage" name="txtMessage"> </textarea>
+	</label>
+
+	<br />
+
+	<button>Go</button>
+</form>

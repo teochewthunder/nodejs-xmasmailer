@@ -1,2 +1,5 @@
-# nodejs-xmasmailer
- Ruimentary mailer written in NodeJS and ExpressJS
+# nodejs-xmasmailer (In progress)
+
+npm install --save express
+npm install --save express-handlebars
+npm install --save body-parser (deprecated)

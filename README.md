@@ -6,4 +6,6 @@ npm install --save body-parser (deprecated)
 
 npm install --save express-session
 npm install --save cookie-parser
-npm install --save csrf
+npm install --save csurf
+
+Reference Error: credentials is not defined.

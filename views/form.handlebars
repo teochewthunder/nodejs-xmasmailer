@@ -1,6 +1,6 @@
 <h1>Email a friend!</h1>
 <form action="/process" method="POST">
-	<input name="_csrf" value="{{ req.csrfToken() }}" />
+	<input name="_csrf" value="{{ csrf }}" />
 	<label for="ddlLayout">
 		<span class="labelText">LAYOUT</span>
 		<select id="ddlLayout" name="ddlLayout">

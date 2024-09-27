@@ -9,13 +9,13 @@ app.set("view engine", "handlebars");
 app.set("port", process.env.PORT || 3000);
 
 app.use(require("body-parser")());
-app.use(require("cookie-parser")(credentials.cookieSecret));
+app.use(require("cookie-parser")("thisisasecret"));
 app.use(require("express-session")());
 app.use(require("csurf")());
 
 
 app.get("/", function(req, res) {
-	res.render("form");
+	res.render("form", { csrf: req.csrfToken() });
 });
 
 app.get("/thankyou", function(req, res) {

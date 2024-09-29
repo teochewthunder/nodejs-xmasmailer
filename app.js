@@ -28,17 +28,18 @@ app.post("/process", function(req, res) {
 
 	//email
 	var nodemailer = require("nodemailer");
-/*
-	var mailTransport = nodemailer.createTransport("SMTP", {
+
+	var transport = nodemailer.createTransport({
+		service: "Gmail",
 		host: "smtp.gmail.com",
-		secureConnection: true,
+		secure: true,
 		port: 465,
 		auth: {
 			user: auth.user,
 			pass: auth.password
 		}
 	});
-*/
+
 	//handle email error
 
 	res.redirect(303, "/thankyou");

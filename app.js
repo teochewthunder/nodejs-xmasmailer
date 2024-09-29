@@ -40,7 +40,7 @@ app.use(function(req, res, next) {
 app.use(function(err, req, res, next) {
 	console.log(err);
 	res.status(500);
-	res.render("500");
+	res.render("500", { errorMessage: err.code });
 });
 
 app.listen(app.get("port"), function() {

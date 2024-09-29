@@ -32,13 +32,13 @@ app.post("/process", function(req, res) {
 	res.redirect(303, "/thankyou");
 });
 
-app.use(function(req, res) {
+app.use(function(req, res, next) {
 	res.status(404);
 	res.render("404");
 });
 
-app.use(function(err, req, res) {
-	consolelog(err);
+app.use(function(err, req, res, next) {
+	console.log(err);
 	res.status(500);
 	res.render("500");
 });

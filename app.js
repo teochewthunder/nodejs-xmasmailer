@@ -35,14 +35,27 @@ app.post("/process", function(req, res) {
 		secure: true,
 		port: 465,
 		auth: {
-			user: auth.user,
-			pass: auth.password
+			user: auth.mail.user,
+			pass: auth.mail.password
 		}
 	});
 
-	//handle email error
+	const options = {
+		from: "teochwthunder@gmail.com",
+		to: req.body.txtEmail,
+		subject: "A Christmas message from your friend has arrived!",
+		text: req.body.txtMessage,
+	};
 
-	res.redirect(303, "/thankyou");
+	transport.sendMail(options, (error, info) => { 
+		console.log(auth);
+		if (error) {
+			console.log(error)
+			res.render("500", { errorMessage: error.code });
+		} else {
+			res.redirect(303, "/thankyou");
+		}
+	});
 });
 
 app.use(function(req, res, next) {

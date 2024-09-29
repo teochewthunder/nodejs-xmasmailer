@@ -1,3 +1,4 @@
+var auth = require("./auth.js");
 var express = require("express");
 
 var app = express();
@@ -9,7 +10,7 @@ app.set("view engine", "handlebars");
 app.set("port", process.env.PORT || 3000);
 
 app.use(require("body-parser")());
-app.use(require("cookie-parser")("thisisasecret"));
+app.use(require("cookie-parser")(auth.secret));
 app.use(require("express-session")());
 app.use(require("csurf")());
 
@@ -26,7 +27,18 @@ app.post("/process", function(req, res) {
 	console.log(req.body);
 
 	//email
-
+	var nodemailer = require("nodemailer");
+/*
+	var mailTransport = nodemailer.createTransport("SMTP", {
+		host: "smtp.gmail.com",
+		secureConnection: true,
+		port: 465,
+		auth: {
+			user: auth.user,
+			pass: auth.password
+		}
+	});
+*/
 	//handle email error
 
 	res.redirect(303, "/thankyou");

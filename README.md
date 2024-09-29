@@ -7,3 +7,5 @@ npm install --save body-parser (deprecated)
 npm install --save express-session
 npm install --save cookie-parser
 npm install --save csurf
+
+npm install --save nodemailer

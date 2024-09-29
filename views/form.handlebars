@@ -1,6 +1,6 @@
-<h1>Email a friend!</h1>
+<h1>Welcome to Teochew Thunder's Xmas Mailer. Email a friend!</h1>
 <form action="/process" method="POST">
-	<input name="_csrf" value="{{ csrf }}" />
+	<input type="hidden" name="_cvsrf" value="{{ csrf }}" />
 	<label for="ddlLayout">
 		<span class="labelText">LAYOUT</span>
 		<select id="ddlLayout" name="ddlLayout">
@@ -14,14 +14,14 @@
 
 	<label for="txtEmail">
 		<span class="labelText">EMAIL</span>
-		<input id="txtEmail" name="txtEmail" placeholder="john12345@gmail.com" />
+		<input id="txtEmail" name="txtEmail" type="email" placeholder="john12345@gmail.com" required />
 	</label>
 
 	<br />
 
 	<label for="txtMessage">
 		<span class="labelText">MESSAGE</span>
-		<textarea id="txtMessage" name="txtMessage"> </textarea>
+		<textarea id="txtMessage" name="txtMessage" required></textarea>
 	</label>
 
 	<br />

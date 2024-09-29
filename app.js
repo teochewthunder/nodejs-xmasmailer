@@ -24,6 +24,11 @@ app.get("/thankyou", function(req, res) {
 
 app.post("/process", function(req, res) {
 	console.log(req.body);
+
+	//email
+
+	//handle email error
+
 	res.redirect(303, "/thankyou");
 });
 
@@ -32,9 +37,10 @@ app.use(function(req, res) {
 	res.render("404");
 });
 
-app.use(function(req, res) {
-	res.type("text/plain");
-	res.send("500, baby");
+app.use(function(err, req, res) {
+	consolelog(err);
+	res.status(500);
+	res.render("500");
 });
 
 app.listen(app.get("port"), function() {

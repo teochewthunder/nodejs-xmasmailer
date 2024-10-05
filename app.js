@@ -55,7 +55,7 @@ app.post("/process", function(req, res) {
 		colors2: layoutColors[req.body.ddlLayout][2],
 		colors3: layoutColors[req.body.ddlLayout][3],
 		colors4: layoutColors[req.body.ddlLayout][4],
-		message: req.body.txtMessage
+		message: req.body.txtMessage.split("\\n").join("<br />")
 	}, (error, html) => {
 		if (error) {
 			console.log(error);

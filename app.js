@@ -40,18 +40,25 @@ app.post("/process", function(req, res) {
 		}
 	});
 
-	var colors = {
+	var layoutColors = {
 		red: ["#440000", "#AA0000", "#FF0000", "#FFAAAA", "#FFCCCC"],
 		green: ["#004400", "#00AA00", "#00FF00", "#AAFFAA", "#CCFFCC"],
 		blue: ["#000044", "#0000AA", "#0000FF", "#AAAAFF", "#CCCCFF"],
 	};
 
+	console.log(layoutColors[req.body.ddlLayout]);
+
 	res.render("emailtemplate", {
 		layout: null,
-		colors: colors[req.body.ddlLayout],
+		colors0: layoutColors[req.body.ddlLayout][0],
+		colors1: layoutColors[req.body.ddlLayout][1],
+		colors2: layoutColors[req.body.ddlLayout][2],
+		colors3: layoutColors[req.body.ddlLayout][3],
+		colors4: layoutColors[req.body.ddlLayout][4],
 		message: req.body.txtMessage
 	}, (error, html) => {
 		if (error) {
+			console.log(error);
 			res.render("500", { errorMessage: error.code });
 		}
 
@@ -59,11 +66,12 @@ app.post("/process", function(req, res) {
 			from: "teochwthunder@gmail.com",
 			to: req.body.txtEmail,
 			subject: "A Christmas message from your friend has arrived!",
-			htm: html
+			html: html
 		};
 
 		transport.sendMail(options, (error, info) => { 
 			if (error) {
+				console.log(error);
 				res.render("500", { errorMessage: error.code });
 			} else {
 				res.redirect(303, "/thankyou");

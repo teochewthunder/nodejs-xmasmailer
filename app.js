@@ -24,9 +24,6 @@ app.get("/thankyou", function(req, res) {
 });
 
 app.post("/process", function(req, res) {
-	console.log(req.body);
-
-	//email
 	var nodemailer = require("nodemailer");
 
 	var transport = nodemailer.createTransport({
@@ -60,23 +57,23 @@ app.post("/process", function(req, res) {
 		if (error) {
 			console.log(error);
 			res.render("500", { errorMessage: error.code });
+		} else {
+			var options = {
+				from: "teochwthunder@gmail.com",
+				to: req.body.txtEmail,
+				subject: "A Christmas message from your friend has arrived!",
+				html: html
+			};
+
+			transport.sendMail(options, (error) => { 
+				if (error) {
+					console.log(error);
+					res.render("500", { errorMessage: error.code });
+				} else {
+					res.redirect(303, "/thankyou");
+				}
+			});			
 		}
-
-		var options = {
-			from: "teochwthunder@gmail.com",
-			to: req.body.txtEmail,
-			subject: "A Christmas message from your friend has arrived!",
-			html: html
-		};
-
-		transport.sendMail(options, (error, info) => { 
-			if (error) {
-				console.log(error);
-				res.render("500", { errorMessage: error.code });
-			} else {
-				res.redirect(303, "/thankyou");
-			}
-		});
 	});
 });
 

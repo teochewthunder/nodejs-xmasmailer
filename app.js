@@ -40,21 +40,35 @@ app.post("/process", function(req, res) {
 		}
 	});
 
-	const options = {
-		from: "teochwthunder@gmail.com",
-		to: req.body.txtEmail,
-		subject: "A Christmas message from your friend has arrived!",
-		text: req.body.txtMessage,
+	var colors = {
+		red: ["#440000", "#AA0000", "#FF0000", "#FFAAAA", "#FFCCCC"],
+		green: ["#004400", "#00AA00", "#00FF00", "#AAFFAA", "#CCFFCC"],
+		blue: ["#000044", "#0000AA", "#0000FF", "#AAAAFF", "#CCCCFF"],
 	};
 
-	transport.sendMail(options, (error, info) => { 
-		console.log(auth);
+	res.render("emailtemplate", {
+		layout: null,
+		colors: colors[req.body.ddlLayout],
+		message: req.body.txtMessage
+	}, (error, html) => {
 		if (error) {
-			console.log(error)
 			res.render("500", { errorMessage: error.code });
-		} else {
-			res.redirect(303, "/thankyou");
 		}
+
+		var options = {
+			from: "teochwthunder@gmail.com",
+			to: req.body.txtEmail,
+			subject: "A Christmas message from your friend has arrived!",
+			htm: html
+		};
+
+		transport.sendMail(options, (error, info) => { 
+			if (error) {
+				res.render("500", { errorMessage: error.code });
+			} else {
+				res.redirect(303, "/thankyou");
+			}
+		});
 	});
 });
 

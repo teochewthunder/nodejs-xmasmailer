@@ -14,15 +14,16 @@ app.use(require("cookie-parser")(auth.secret));
 app.use(require("express-session")());
 app.use(require("csurf")());
 
-app.get("/", (req, res)=> {
+
+app.get("/", function(req, res) {
 	res.render("form", { csrf: req.csrfToken() });
 });
 
-app.get("/thankyou", (req, res)=> {
+app.get("/thankyou", function(req, res) {
 	res.render("thankyou");
 });
 
-app.post("/process", (req, res)=> {
+app.post("/process", function(req, res) {
 	var nodemailer = require("nodemailer");
 
 	var transport = nodemailer.createTransport({
@@ -41,6 +42,8 @@ app.post("/process", (req, res)=> {
 		green: ["#004400", "#00AA00", "#00FF00", "#AAFFAA", "#CCFFCC"],
 		blue: ["#000044", "#0000AA", "#0000FF", "#AAAAFF", "#CCCCFF"],
 	};
+
+	console.log(layoutColors[req.body.ddlLayout]);
 
 	res.render("emailtemplate", {
 		layout: null,
@@ -69,24 +72,22 @@ app.post("/process", (req, res)=> {
 				} else {
 					res.redirect(303, "/thankyou");
 				}
-			});	
+			});			
 		}
 	});
-
-	console.log(req.body);
-	//res.redirect(303, "/thankyou");
 });
 
-app.use((req, res, next)=> {
+app.use(function(req, res, next) {
 	res.status(404);
 	res.render("404");
 });
 
-app.use((err, req, res, next)=> {
+app.use(function(err, req, res, next) {
+	console.log(err);
 	res.status(500);
 	res.render("500", { errorMessage: err.code });
 });
 
-app.listen(app.get("port"), ()=> {
-
+app.listen(app.get("port"), function() {
+	console.log("Port " + app.get("port"));
 });

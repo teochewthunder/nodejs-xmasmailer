@@ -11,17 +11,18 @@ This Node webservice accepts input in a form and uses it to send  HTML email.
 - `npm install --save nodemailer`
 
 ### Routes
-- Main
-- Process
-- Thankyou
-- 500
-- 404
+- `/`: Default. Displays the form.
+- `process`: POST. This is run when form is submitted. Data from the form is used to generate a HTML email.
+- `thankyou`: This is run after form has been successfully processed.
+- `500`: This is run when an error occurs.
+- `404`: This is run when the requested route does not exist.
 
 ### Views
-- Layout
-- Main
-- THankyou
-- 500
-- 400
+- `main.handlebars`: Parent layout for all other views. (except `emailtemplate`)
+- `form.handlebars `: Form for gathering input.
+- `thankyou.handlebars`: Shows thank you message with a link back to Form.
+- `500.handlebars`: Displays error.
+- `400.handlebars`: Displays 404.
+- `emailtemplate.handlebars`: The layout used for creating HTML email.
 
 

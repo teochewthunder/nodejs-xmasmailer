@@ -19,7 +19,7 @@ This Node webservice accepts input in a form and uses it to send  HTML email.
 
 ## Views
 - `main.handlebars`: Parent layout for all other views. (except `emailtemplate`)
-- `form.handlebars `: Form for gathering input.
+- `form.handlebars`: Form for gathering input.
 - `thankyou.handlebars`: Shows thank you message with a link back to Form.
 - `500.handlebars`: Displays error.
 - `400.handlebars`: Displays 404.
